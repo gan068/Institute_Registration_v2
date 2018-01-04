@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
+//Route::get('/', function () {
+//    return view('index');
+//});
+Route::any('/','IndexController@index');
 Route::post('upload','IndexController@upload');
 Route::any('test','IndexController@testDB');

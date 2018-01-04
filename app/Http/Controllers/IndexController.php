@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\NTCUDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
     //
+    public function index()
+    {
+        $NTCUDepartment = new NTCUDepartment();
+        $NTCUDepartmentData = $NTCUDepartment->searchNTCUDepartment();
+        return view('index')->with(['NTCUDepartment'=>$NTCUDepartmentData]);
+    }
+
     public function upload(Request $request)
     {
         $name = $request->input('name');
@@ -15,8 +23,8 @@ class IndexController extends Controller
         if ($request->file('photo')->isValid()) {
             $path = $request->photo->path();
             $extension = $request->photo->extension();
-            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'uploads';
-            $filename  = $request->file('photo')->getClientOriginalName();
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . 'uploads';
+            $filename = $request->file('photo')->getClientOriginalName();
             $upload_success = $request->file('photo')->move($destinationPath, $filename);
             dd($upload_success);
         }
@@ -24,8 +32,10 @@ class IndexController extends Controller
 
     public function testDB()
     {
-        $connection = DB::connection()->getPdo();
-        dd($connection);
+        $NTCUDepartment = new NTCUDepartment();
+        dd($NTCUDepartment->searchNTCUDepartment());
+//        $connection = DB::connection()->getPdo();
+//        dd($connection);
     }
 
 }

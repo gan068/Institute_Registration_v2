@@ -32,7 +32,7 @@
                 <td>
                     <input type="file" id="photo" name="photo"
                            accept="image/jpeg,image/jpg,image/gif,image/png">
-<!--                    accept="image/jpeg,image/jpg,image/gif,image/png" 限制上傳檔案類型-->
+                    <!--                    accept="image/jpeg,image/jpg,image/gif,image/png" 限制上傳檔案類型-->
                 </td>
             </tr>
             <tr>
@@ -74,23 +74,23 @@
                 </td>
                 <td>
 
-<!--                    <input type="text" id="zip_code" name="zip_code" size="4">-->
+                    <!--                    <input type="text" id="zip_code" name="zip_code" size="4">-->
                     <span id="zip_code"></span>
                     <?php
-                        /*
-                    $city_search = "SELECT CityName FROM Institute_Registration.address group by CityName order by id asc;";
-                    $city_data = DBconnect::connect()->query($city_search);
-                    */
+                    /*
+                $city_search = "SELECT CityName FROM Institute_Registration.address group by CityName order by id asc;";
+                $city_data = DBconnect::connect()->query($city_search);
+                */
                     ?>
 
                     <select id="city_name" name="city_name">
                         <option value="city_name_null">請選擇縣市</option>
                         <?php
-                            /*
-                        foreach ($city_data as $value) {
-                            echo "<option value=" . $value['CityName'] . ">" . $value['CityName'] . "</option>";
-                        }
-                            */
+                        /*
+                    foreach ($city_data as $value) {
+                        echo "<option value=" . $value['CityName'] . ">" . $value['CityName'] . "</option>";
+                    }
+                        */
                         ?>
                     </select>
                     <select id="area_name" name="area_name">
@@ -117,14 +117,14 @@
                     <select id="school" name="school">
                         <option value="school_null">請選擇畢業學校</option>
                         <?php
-                            /*
-                        // 找學校名稱
-                        $school = new School();
-                        foreach ($school->school_search() as $value) {
-                            echo $value['school_name'] . '<br>';
-                            echo "  <option value=" . $value['school_name'] . ">" . $value['school_name'] . "</option>";
-                        }
-                            */
+                        /*
+                    // 找學校名稱
+                    $school = new School();
+                    foreach ($school->school_search() as $value) {
+                        echo $value['school_name'] . '<br>';
+                        echo "  <option value=" . $value['school_name'] . ">" . $value['school_name'] . "</option>";
+                    }
+                        */
                         ?>
                     </select>
                 </td>
@@ -134,7 +134,7 @@
                     <span style="color: red">＊</span> 請選擇畢業科系：
                 </td>
                 <td>
-                    <select id="school_department" name="school_department" >
+                    <select id="school_department" name="school_department">
                         <option value="school_department_null">畢業科系</option>
                     </select>
                 </td>
@@ -147,14 +147,17 @@
                 <td>
                     <select name="ntcu_department">
                         <option value="ntcu_department_null">請選擇報考科系</option>
+                        @foreach($NTCUDepartment as $value)
+                            <option value={{$value->department_id}}>{{$value->department_name}}</option>
+                        @endforeach
                         <?php
-                            /*
-                        // 找本校學校碩博班科系
-                        $ntcu_department = new NTCUDepartment();
-                        foreach ($ntcu_department->NTCU_department_search() as $value) {
-                            echo "  <option value=" . $value['department_id'] . ">" . $value['department_name'] . "</option>";
-                        }
-                            */
+                        /*
+                    // 找本校學校碩博班科系
+                    $ntcu_department = new NTCUDepartment();
+                    foreach ($ntcu_department->NTCU_department_search() as $value) {
+                        echo "  <option value=" . $value['department_id'] . ">" . $value['department_name'] . "</option>";
+                    }
+                        */
                         ?>
 
 
