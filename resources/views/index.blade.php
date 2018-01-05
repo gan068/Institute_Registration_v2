@@ -89,13 +89,7 @@
                         @foreach($cityName as $value)
                             <option value="{{ $value->CityName}} ">{{$value->CityName}}</option>
                         @endforeach
-                        <?php
-                        /*
-                    foreach ($city_data as $value) {
-                        echo "<option value=" . $value['CityName'] . ">" . $value['CityName'] . "</option>";
-                    }
-                        */
-                        ?>
+
                     </select>
                     <select id="area_name" name="area_name">
                         <option value="area_name_null">請選擇區</option>

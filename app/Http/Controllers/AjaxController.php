@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\Address;
 use App\Http\Model\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -20,5 +21,21 @@ class AjaxController extends Controller
         }
         echo json_encode($departmen);// 回傳 Ajax
 
+    }
+
+    public function areaName(Request $request){
+        $areaName = new Address();
+        $areaNameSearch = $areaName->areaName($request->input('cityName'));
+        $areaNameData = array();
+        foreach ($areaNameSearch as $value){
+            $areaNameData[$value->ZipCode] = $value->AreaName;//轉成array存放
+        }
+        echo json_encode($areaNameData);
+    }
+
+    public function zipCode(Request $request){
+        $zipCode = new Address();
+        $zipCodeSearch = $zipCode->zipCode($request->input('areaName'));
+        echo $zipCodeSearch->ZipCode;
     }
 }

@@ -99,9 +99,10 @@
 
         $("#city_name").change(function () {
             console.log($("#city_name").val());
-            $.post("ajax/AreaName.php",
+            $.post("AreaName",
                 {
-                    cityName: $("#city_name").val()
+                    cityName: $("#city_name").val(),
+                    _token: '{{csrf_token()}}'
                 }
                 , function (data) {
                     $("#area_name").empty();// 移除下拉式選單html
@@ -118,9 +119,10 @@
         $("#area_name").change(function () {
             console.log($("#area_name").val());
 
-            $.post("ajax/ZipCode.php",
+            $.post("ZipCode",
                 {
-                    area_name: $("#area_name").val()
+                    areaName: $("#area_name").val(),
+                    _token: '{{csrf_token()}}'
                 }
                 , function (data) {
                     $("#zip_code").empty();

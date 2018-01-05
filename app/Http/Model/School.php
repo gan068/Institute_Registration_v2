@@ -22,6 +22,7 @@ class School extends Model
     {
         $schoolName =
             DB::select('SELECT distinct school_name FROM Institute_Registration.school');
+        //
         return $schoolName;
 
     }
@@ -32,6 +33,7 @@ class School extends Model
             DB::select("SELECT school_id,school_department 
 FROM Institute_Registration.school 
 where school_name='" . $schoolName . "'");
+       //
         return $schoolDepartment;
     }
 }

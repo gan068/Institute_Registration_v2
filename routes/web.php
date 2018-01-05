@@ -17,4 +17,7 @@
 Route::any('/','IndexController@index');
 Route::post('upload','IndexController@upload');
 Route::any('test','IndexController@testDB');
+
 Route::any('SchoolDepartment','AjaxController@schoolDepartment');
+Route::any('AreaName','AjaxController@areaName');
+Route::any('ZipCode','AjaxController@zipCode');
