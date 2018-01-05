@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="{{asset("lib/jquery-3.2.1.min.js")}}"></script>
+    @include("indexjs")
     <meta charset="UTF-8">
     <title>台中教育大學＿碩博班報名系統</title>
-    <script src="{{asset("lib/jquery-3.2.1.min.js")}}"></script>
-    <script src="index.js"></script>
+    {{--<script src="{{asset("resources/views/index.js")}}"></script>--}}
 
     <link rel="stylesheet" type="text/css" href="{{asset('resources/views/index.css')}}">
 
@@ -85,6 +86,9 @@
 
                     <select id="city_name" name="city_name">
                         <option value="city_name_null">請選擇縣市</option>
+                        @foreach($cityName as $value)
+                            <option value="{{ $value->CityName}} ">{{$value->CityName}}</option>
+                        @endforeach
                         <?php
                         /*
                     foreach ($city_data as $value) {
@@ -116,16 +120,10 @@
                 <td>
                     <select id="school" name="school">
                         <option value="school_null">請選擇畢業學校</option>
-                        <?php
-                        /*
-                    // 找學校名稱
-                    $school = new School();
-                    foreach ($school->school_search() as $value) {
-                        echo $value['school_name'] . '<br>';
-                        echo "  <option value=" . $value['school_name'] . ">" . $value['school_name'] . "</option>";
-                    }
-                        */
-                        ?>
+                        @foreach($schoolName as $value)
+                            <option value={{$value->school_name}}>{{$value->school_name}}</option>
+                        @endforeach
+
                     </select>
                 </td>
             </tr>
@@ -150,17 +148,6 @@
                         @foreach($NTCUDepartment as $value)
                             <option value={{$value->department_id}}>{{$value->department_name}}</option>
                         @endforeach
-                        <?php
-                        /*
-                    // 找本校學校碩博班科系
-                    $ntcu_department = new NTCUDepartment();
-                    foreach ($ntcu_department->NTCU_department_search() as $value) {
-                        echo "  <option value=" . $value['department_id'] . ">" . $value['department_name'] . "</option>";
-                    }
-                        */
-                        ?>
-
-
                     </select>
                 </td>
             </tr>

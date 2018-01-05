@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\Address;
 use App\Http\Model\NTCUDepartment;
+use App\Http\Model\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,8 +14,18 @@ class IndexController extends Controller
     public function index()
     {
         $NTCUDepartment = new NTCUDepartment();
-        $NTCUDepartmentData = $NTCUDepartment->searchNTCUDepartment();
-        return view('index')->with(['NTCUDepartment'=>$NTCUDepartmentData]);
+        $schoolName = new School();
+        $cityName = new Address();
+
+        $NTCUDepartmentSearch = $NTCUDepartment->searchNTCUDepartment();
+        $schoolNameSearch = $schoolName->schoolName();
+        $cityNameSearch = $cityName->cityName();
+        //
+        return view('index')->with(
+            ['NTCUDepartment' => $NTCUDepartmentSearch,
+                'schoolName' => $schoolNameSearch,
+                'cityName'=>$cityNameSearch
+            ]);
     }
 
     public function upload(Request $request)
