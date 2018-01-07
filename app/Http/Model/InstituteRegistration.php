@@ -19,12 +19,13 @@ class InstituteRegistration extends Model
     public $timestamps = false;
 
     public function insertInstituteRegistrationInformation(
-        $school_department,$ntcu_department,$id
-    ){
+        $school_department, $ntcu_department, $id
+    )
+    {
         DB::table('Institute_Registration_information')->insert([
-            'school_school_id'=>$school_department,
-            'ntcu_department_department_id'=>$ntcu_department,
-            'candidates_information_candidates_information_id'=>$id
+            'school_school_id' => $school_department,
+            'ntcu_department_department_id' => $ntcu_department,
+            'candidates_information_candidates_information_id' => $id
         ]);
     }
 }

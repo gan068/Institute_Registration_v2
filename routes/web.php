@@ -15,9 +15,13 @@
 //    return view('index');
 //});
 Route::any('/','IndexController@index');
-Route::post('upload','IndexController@upload');
-Route::any('test','IndexController@testDB');
-
+// index ajax
 Route::any('SchoolDepartment','AjaxController@schoolDepartment');
 Route::any('AreaName','AjaxController@areaName');
 Route::any('ZipCode','AjaxController@zipCode');
+Route::post('upload','IndexController@upload');
+Route::any('test','IndexController@testDB');
+// admin
+Route::any('admin','AdminController@index');
+// admin ajax
+Route::any('AddNTCUDepartment','AjaxController@addNTCUDepartment');
