@@ -84,4 +84,11 @@ class AjaxController extends Controller
             echo '此科系以存在';
         }
     }
+
+    public function deleteNTCUDepartment(Request $request)
+    {
+        $NTCUDepartment = new NTCUDepartment();
+        $NTCUDepartment->deleteDepartment($request->input('deleteDepartmentID'));
+        echo "刪除科系成功";
+    }
 }

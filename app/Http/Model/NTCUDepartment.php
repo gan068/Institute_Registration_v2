@@ -51,4 +51,8 @@ class NTCUDepartment extends Model
             ['department_class' => $updateClass]
         );
     }
+
+    public function deleteDepartment($updateID){
+        NTCUDepartment::where('department_id',$updateID)->delete();
+    }
 }
