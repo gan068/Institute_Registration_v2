@@ -63,4 +63,25 @@ class AjaxController extends Controller
         }
 
     }
+
+    public function updateNTCUDepartment(Request $request)
+    {
+        $NTCUDepartment = new NTCUDepartment();
+        $NTCUDepartmentID = $NTCUDepartment->searchDepartmentID(
+            $request->input('updateDepartmenName'),
+            $request->input('updateDepartmenDegree'),
+            $request->input('updateDepartmenClass'));
+
+
+        if ($NTCUDepartmentID === null) {
+            $NTCUDepartment->updateDepartment(
+                $request->input('updateDepartmentID'),
+                $request->input('updateDepartmenName'),
+                $request->input('updateDepartmenDegree'),
+                $request->input('updateDepartmenClass'));
+            echo '更新成功';
+        } else {
+            echo '此科系以存在';
+        }
+    }
 }

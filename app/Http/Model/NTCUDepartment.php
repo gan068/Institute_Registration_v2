@@ -42,4 +42,13 @@ class NTCUDepartment extends Model
             'department_class' => $addClass
         ]);
     }
+
+    public function updateDepartment($updateID,$updateName, $updateDegree, $updateClass)
+    {
+        NTCUDepartment::where('department_id',$updateID)->update(
+            ['department_name' => $updateName],
+            ['department_degree' => $updateDegree],
+            ['department_class' => $updateClass]
+        );
+    }
 }
