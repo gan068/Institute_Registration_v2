@@ -27,3 +27,4 @@ Route::any('admin','AdminController@index');
 Route::any('AddNTCUDepartment','AjaxController@addNTCUDepartment');
 Route::any('UpdateNTCUDepartment','AjaxController@updateNTCUDepartment');
 Route::any('DeleteNTCUDepartment','AjaxController@deleteNTCUDepartment');
+Route::any('Department','AjaxController@department');
