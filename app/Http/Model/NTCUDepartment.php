@@ -26,18 +26,12 @@ class NTCUDepartment extends Model
 
     public function searchDepartmentID($addName, $addDegree, $addClass)
     {
-        $departmentID = DB::table('ntcu_department')
-            ->select(
-                "SELECT department_id FROM Institute_Registration.ntcu_department where department_name = '" . $addName . "'anddepartment_degree='" . $addDegree . "'and department_class= '" . $addClass . "'")
-        ->first();
-//
-//        $departmentID = DB::table('ntcu_department')
-//            ->whereColumn([
-//                ['department_name', '=', $addName],
-//                ['department_degree', '=', $addDegree],
-//                ['department_class', '=', $addClass]
-//            ])->get();
-        return $departmentID;
+        $NTCUDepartment = DB::table('ntcu_department')
+            ->where('department_name', $addName)
+            ->where('department_degree', $addDegree)
+            ->where('department_class', $addClass)
+            ->first();
+        return $NTCUDepartment;
     }
 
     public function insertDepartment($addName, $addDegree, $addClass)

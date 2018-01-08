@@ -15,9 +15,8 @@
                         _token: '{{csrf_token()}}'
                     },
                     function (data) {
-                    console.log(data);
-                        // alert(data);
-                        // history.go(0);
+                        alert(data);
+                        history.go(0);
                     });
 
             } else {

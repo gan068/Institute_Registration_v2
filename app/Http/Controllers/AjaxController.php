@@ -6,7 +6,6 @@ use App\Http\Model\Address;
 use App\Http\Model\NTCUDepartment;
 use App\Http\Model\School;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 
 class AjaxController extends Controller
 {
@@ -50,17 +49,18 @@ class AjaxController extends Controller
             $request->input('addName'),
             $request->input('addDegree'),
             $request->input('addClass'));
-        //
-        dd($NTCUDepartmentID)  ;
-//        if ($NTCUDepartmentID == null) {
-//            $NTCUDepartment->insertDepartment(
-//                $request->input('addName'),
-//                $request->input('addDegree'),
-//                $request->input('addClass'));
-//            //
-//            echo  "新增科系成功";
-//        } else {
-//            echo "此科系已存在";
-//        }
+
+
+        if ($NTCUDepartmentID === null) {
+            $NTCUDepartment->insertDepartment(
+                $request->input('addName'),
+                $request->input('addDegree'),
+                $request->input('addClass'));
+            echo '新增成功';
+
+        } else {
+            echo '此科系以存在';
+        }
+
     }
 }
