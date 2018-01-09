@@ -77,4 +77,26 @@ class IndexController extends Controller
 //        dd($connection);
     }
 
+    public function test()
+    {
+
+        $school_data = DB::table('Institute_Registration_information')
+            ->join('school', 'school_school_id', '=', 'school_id')
+            ->select(DB::raw("count(school.school_id) as counts,school.school_name,school.school_department"))
+            ->where('Institute_Registration_information.ntcu_department_department_id', 1)
+            ->groupBy('school.school_id','school.school_name','school_department')
+            ->get();
+//        $school_data = DB::select("
+//SELECT
+//    COUNT(school_id) AS counts,
+//    school_id,school_name,school_department
+//FROM
+//    Institute_Registration.Institute_Registration_information
+//    inner JOIN school  ON Institute_Registration_information.school_school_id = school.school_id
+//WHERE
+//    ntcu_department_department_id = 1
+//    group By school_id,school_name,school_department;
+//    ");
+        dd($school_data);
+    }
 }

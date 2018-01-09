@@ -106,7 +106,7 @@ class AjaxController extends Controller
     school.school_name,'_',
     school.school_department)as school"))
             ->where('Institute_Registration_information.ntcu_department_department_id', $request->input('department_id'))
-            ->orderBy('school_id','asc')
+            ->orderBy('school_id', 'asc')
             ->get();
         $male = 0;
         $female = 0;
@@ -149,30 +149,14 @@ class AjaxController extends Controller
                 $age45 = $age45 + 1;
             }
             // 統計報考學校畢業學校和科系的人數
-
-            $school_data = "
-SELECT count(school_id) as count ,school_id,school_name,school_department
-FROM
-    Institute_Registration.Institute_Registration_information
-        INNER JOIN
-    school
-
-WHERE
-    school_school_id = school_id
-        AND ntcu_department_department_id = '" . $request->input('department_id') . "'
-        group by school_id order by school_id;";
-
-
-//dd($school_data);
-
+//
             $school_data = DB::table('Institute_Registration_information')
                 ->join('school', 'school_school_id', '=', 'school_id')
                 ->select(DB::raw("count(school.school_id) as counts,school.school_name,school.school_department"))
                 ->where('Institute_Registration_information.ntcu_department_department_id', $request->input('department_id'))
-                ->groupBy('school.school_id')
+                ->groupBy('school.school_id','school.school_name','school.school_department')
                 ->get();
-//
-//
+
             foreach ($school_data as $key => $school) {
                 $school_department[$key] = $school->school_name . ' ' . $school->school_department;
                 $school_count[$key] = $school->counts;

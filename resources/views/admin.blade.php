@@ -101,123 +101,123 @@
                     function (data) {
                     console.log(data);
                         // console.log(JSON.parse(data));
-                        // var statistics_data = JSON.parse(data);
-                        // // 報考男女生人數
-                        // var gender_male = statistics_data['gender']['male'];
-                        // var gender_female = statistics_data['gender']['female'];
-                        // // $("#gender").empty();
-                        // var genderChart = echarts.init(document.getElementById('gender'));
-                        // var genderOption = {
-                        //     title: {
-                        //         text: '報考男女人數',
-                        //         x: 'center'
-                        //     },
-                        //     tooltip: {
-                        //         trigger: 'item',
-                        //         formatter: "{a} <br/>{b} : {c} 人 ({d}%)"
-                        //     },
-                        //     color: ['#0000ff', '#ff0000'],
-                        //     legend: {
-                        //         orient: 'vertical',
-                        //         left: 'left',
-                        //         data: ["男 " + gender_male + "人", "女 " + gender_female + "人"]
-                        //     },
-                        //
-                        //     series: [
-                        //         {
-                        //             name: '報考男女人數',
-                        //             type: 'pie',
-                        //             radius: '55%',
-                        //             center: ['50%', '50%'],
-                        //             data: [
-                        //                 {value: gender_male, name: "男 " + gender_male + "人"},
-                        //                 {value: gender_female, name: '女 ' + gender_female + "人"},
-                        //             ]
-                        //         }
-                        //     ]
-                        // };
-                        // genderChart.setOption(genderOption);
-                        // // 報考年紀區間
-                        // var ageChart = echarts.init(document.getElementById('age'));
-                        // var age_option = {
-                        //     tooltip: {
-                        //         trigger: 'item',
-                        //         formatter: "{a} <br/>{b}: 共{c}人 ({d}%)"
-                        //     },
-                        //     legend: {
-                        //         orient: 'vertical',
-                        //         x: 'left',
-                        //         data: statistics_data['age_range_name']
-                        //     },
-                        //     series: [
-                        //         {
-                        //             name: '報考年紀區間',
-                        //             type: 'pie',
-                        //             radius: ['50%', '70%'],
-                        //             avoidLabelOverlap: false,
-                        //             label: {
-                        //                 normal: {
-                        //                     show: false,
-                        //                     position: 'center'
-                        //                 },
-                        //                 emphasis: {
-                        //                     show: true,
-                        //                     textStyle: {
-                        //                         fontSize: '30',
-                        //                         fontWeight: 'bold'
-                        //                     }
-                        //                 }
-                        //             },
-                        //             labelLine: {
-                        //                 normal: {
-                        //                     show: false
-                        //                 }
-                        //             },
-                        //             data: statistics_data['age_range']
-                        //         }
-                        //     ]
-                        // };
-                        // ageChart.setOption(age_option);
-                        // // 統計報考人就讀學校科系
-                        // var schoolChart = echarts.init(document.getElementById('school'));
-                        // var school_option = {
-                        //     color: ['#3398DB'],
-                        //     tooltip: {
-                        //         trigger: 'axis',
-                        //         axisPointer: {
-                        //             type: 'shadow'
-                        //         }
-                        //     },
-                        //     grid: {
-                        //         left: '1%',
-                        //         right: '2%',
-                        //         bottom: '1%',
-                        //         containLabel: true
-                        //     },
-                        //     yAxis: [
-                        //         {
-                        //             type: 'category',
-                        //             data: statistics_data['school_department'],
-                        //             axisTick: {
-                        //                 alignWithLabel: true
-                        //             }
-                        //         }
-                        //     ],
-                        //     xAxis: [
-                        //         {
-                        //             type: 'value'
-                        //         }
-                        //     ],
-                        //     series: [
-                        //         {
-                        //             name: '報考人數',
-                        //             type: 'bar',
-                        //             barWidth: '20%',
-                        //             data: statistics_data['school_count']
-                        //         }
-                        //     ]
-                        // };
-                        // schoolChart.setOption(school_option);
+                        var statistics_data = JSON.parse(data);
+                        // 報考男女生人數
+                        var gender_male = statistics_data['gender']['male'];
+                        var gender_female = statistics_data['gender']['female'];
+                        // $("#gender").empty();
+                        var genderChart = echarts.init(document.getElementById('gender'));
+                        var genderOption = {
+                            title: {
+                                text: '報考男女人數',
+                                x: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} 人 ({d}%)"
+                            },
+                            color: ['#0000ff', '#ff0000'],
+                            legend: {
+                                orient: 'vertical',
+                                left: 'left',
+                                data: ["男 " + gender_male + "人", "女 " + gender_female + "人"]
+                            },
+
+                            series: [
+                                {
+                                    name: '報考男女人數',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '50%'],
+                                    data: [
+                                        {value: gender_male, name: "男 " + gender_male + "人"},
+                                        {value: gender_female, name: '女 ' + gender_female + "人"},
+                                    ]
+                                }
+                            ]
+                        };
+                        genderChart.setOption(genderOption);
+                        // 報考年紀區間
+                        var ageChart = echarts.init(document.getElementById('age'));
+                        var age_option = {
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b}: 共{c}人 ({d}%)"
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'left',
+                                data: statistics_data['age_range_name']
+                            },
+                            series: [
+                                {
+                                    name: '報考年紀區間',
+                                    type: 'pie',
+                                    radius: ['50%', '70%'],
+                                    avoidLabelOverlap: false,
+                                    label: {
+                                        normal: {
+                                            show: false,
+                                            position: 'center'
+                                        },
+                                        emphasis: {
+                                            show: true,
+                                            textStyle: {
+                                                fontSize: '30',
+                                                fontWeight: 'bold'
+                                            }
+                                        }
+                                    },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data: statistics_data['age_range']
+                                }
+                            ]
+                        };
+                        ageChart.setOption(age_option);
+                        // 統計報考人就讀學校科系
+                        var schoolChart = echarts.init(document.getElementById('school'));
+                        var school_option = {
+                            color: ['#3398DB'],
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'shadow'
+                                }
+                            },
+                            grid: {
+                                left: '1%',
+                                right: '2%',
+                                bottom: '1%',
+                                containLabel: true
+                            },
+                            yAxis: [
+                                {
+                                    type: 'category',
+                                    data: statistics_data['school_department'],
+                                    axisTick: {
+                                        alignWithLabel: true
+                                    }
+                                }
+                            ],
+                            xAxis: [
+                                {
+                                    type: 'value'
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: '報考人數',
+                                    type: 'bar',
+                                    barWidth: '20%',
+                                    data: statistics_data['school_count']
+                                }
+                            ]
+                        };
+                        schoolChart.setOption(school_option);
 
 
                     }
