@@ -12,11 +12,28 @@ namespace App\Http\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class candidatesInformation extends Model
+class CandidatesInformation extends Model
 {
     protected $table = 'candidates_information';
     protected $primaryKey = 'candidates_information_id';
     public $timestamps = false;
+
+    protected $fillable = [
+        'candidates_information_id',
+        'candidates_information_name',
+        'candidates_information_photo_path',
+        'candidates_information_gender',
+        'candidates_information_birthday',
+        'candidates_information_address',
+        'candidates_information_phone',
+        'candidates_information_email'
+    ];
+
+    public function InstituteRegistration()
+    {
+        return $this->hasMany(InstituteRegistration::class,
+            'candidates_information_candidates_information_id', 'candidates_information_id');
+    }
 
     public function searchID($searchID)
     {
