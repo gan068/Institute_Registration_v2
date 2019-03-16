@@ -10,36 +10,34 @@ use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
-    //$school_department
     public function schoolDepartment(Request $request)
     {
-        $schoolDepartment = new School();
-        $schoolDepartmentData = $schoolDepartment->schoolDepartment($request->input('schoolName'));
-        $departmen = array();
+        $school_name = $request->get('schoolName');
+        $school_department_data = School::where('school_name', $school_name)
+            ->pluck('school_department', 'school_id')
+            ->get();
 
-        foreach ($schoolDepartmentData as $value) {
-            $departmen[$value->school_id] = $value->school_department;//轉成array存放
-        }
-        echo json_encode($departmen);// 回傳 Ajax
-
+        return Response::json($school_department_data);
     }
 
     public function areaName(Request $request)
     {
-        $areaName = new Address();
-        $areaNameSearch = $areaName->areaName($request->input('cityName'));
-        $areaNameData = array();
-        foreach ($areaNameSearch as $value) {
-            $areaNameData[$value->ZipCode] = $value->AreaName;//轉成array存放
-        }
-        echo json_encode($areaNameData);
+        $city_name = $request->get('cityName');
+        $area_data = Address::where('CityName', $city_name)
+            ->orderBy('id', 'ASC')
+            ->pluck('AreaName', 'ZipCode')
+            ->get();
+
+        return Response::json($area_data);
     }
 
     public function zipCode(Request $request)
     {
-        $zipCode = new Address();
-        $zipCodeSearch = $zipCode->zipCode($request->input('areaName'));
-        echo $zipCodeSearch->ZipCode;
+        $area_name = $request->get('areaName');
+        $zip_code = Address::where('AreaName', $area_name)
+            ->value('ZipCode');
+
+        return Response::json($zip_code);
     }
 
     // admin ajax
