@@ -33,4 +33,36 @@ class Repository
             ->pluck('school_name', 'school_id')
             ->get();
     }
+
+    public function fetchDepartment($name, $degree, $class)
+    {
+        $department = NTCUDepartment::where('department_name', $name)
+            ->where('department_degree', $degree)
+            ->where('department_class', $class)
+            ->first();
+
+        return $department;
+    }
+
+    public function insertDepartment($name, $degree, $class)
+    {
+        $department = new NTCUDepartment();
+        $department->department_name = $name;
+        $department->department_degree = $degree;
+        $department->department_class = $class;
+        $department->save();
+
+        return $department;
+    }
+
+    public function updateDepartment($id, $name, $degree, $class)
+    {
+        $department = NTCUDepartment::where('department_id', $id)->first();
+        $department->department_name = $name;
+        $department->department_degree = $degree;
+        $department->department_class = $class;
+        $department->save();
+
+        return $department;
+    }
 }

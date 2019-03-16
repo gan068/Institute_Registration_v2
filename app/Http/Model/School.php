@@ -8,15 +8,26 @@
 
 namespace App\Http\Model;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Http\Model\InstituteRegistration;
 
 class School extends Model
 {
     protected $table = 'school';
     protected $primaryKey = 'school_id';
     public $timestamps = false;
+
+    protected $fillable = [
+        'school_id',
+        'school_name',
+        'school_department'
+    ];
+
+    public function InstituteRegistration()
+    {
+        return $this->hasMany(InstituteRegistration::class, 'school_school_id', 'school_id');
+    }
 
     public function schoolName()
     {

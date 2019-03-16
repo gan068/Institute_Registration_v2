@@ -17,6 +17,19 @@ class NTCUDepartment extends Model
     protected $primaryKey = 'department_id';
     public $timestamps = false;
 
+    protected $fillable = [
+        'department_id',
+        'department_name',
+        'department_degree',
+        'department_class',
+    ];
+
+    public function InstituteRegistration()
+    {
+        return $this->hasMany(InstituteRegistration::class,
+            'ntcu_department_department_id', 'department_id');
+    }
+
     public function searchNTCUDepartment()
     {
         $search = DB::select("SELECT department_id, concat(department_name,'_',department_degree,'(',department_class,')')
@@ -43,16 +56,17 @@ class NTCUDepartment extends Model
         ]);
     }
 
-    public function updateDepartment($updateID,$updateName, $updateDegree, $updateClass)
+    public function updateDepartment($updateID, $updateName, $updateDegree, $updateClass)
     {
-        NTCUDepartment::where('department_id',$updateID)->update(
+        NTCUDepartment::where('department_id', $updateID)->update(
             ['department_name' => $updateName],
             ['department_degree' => $updateDegree],
             ['department_class' => $updateClass]
         );
     }
 
-    public function deleteDepartment($updateID){
-        NTCUDepartment::where('department_id',$updateID)->delete();
+    public function deleteDepartment($updateID)
+    {
+        NTCUDepartment::where('department_id', $updateID)->delete();
     }
 }
