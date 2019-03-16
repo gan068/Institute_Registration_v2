@@ -20,6 +20,22 @@ class InstituteRegistration extends Model
         'school_school_id',
     ];
 
+    public function ntcuDepartment()
+    {
+        return $this->belongsTo(NTCUDepartment::class, 'ntcu_department_department_id', 'department_id');
+    }
+
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_school_id', 'school_id');
+    }
+
+    public function candidatesInformation()
+    {
+        return $this->belongsTo(CandidatesInformation::class,
+            'candidates_information_candidates_information_id', 'candidates_information_id');
+    }
+
     public function insertInstituteRegistrationInformation
     (
         $school_department, $ntcu_department, $id
