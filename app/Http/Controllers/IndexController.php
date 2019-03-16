@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Model\Address;
 use App\Http\Model\InstituteRegistration;
 use App\Http\Model\NTCUDepartment;
-use App\Http\Model\School;
 use App\Http\Model\CandidatesInformation;
+use App\Repositories\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
-    //
+    protected $repo;
+
+    public function __construct()
+    {
+        $this->repo = new Repository();
+    }
+
     public function index()
     {
-        $NTCUDepartment = new NTCUDepartment();
-        $schoolName = new School();
-        $cityName = new Address();
+        $cities = $this->repo->getCities();
+        $schools = $this->repo->getSchools();
+        $departments = $this->repo->searchNTCUDepartment();
 
-        $NTCUDepartmentSearch = $NTCUDepartment->searchNTCUDepartment();
-        $schoolNameSearch = $schoolName->schoolName();
-        $cityNameSearch = $cityName->cityName();
-        //
         return view('index')->with(
-            ['NTCUDepartment' => $NTCUDepartmentSearch,
-                'schoolName' => $schoolNameSearch,
-                'cityName' => $cityNameSearch
+            ['NTCUDepartment' => $departments,
+                'schoolName' => $schools,
+                'cityName' => $cities
             ]);
     }
 
@@ -84,7 +85,7 @@ class IndexController extends Controller
             ->join('school', 'school_school_id', '=', 'school_id')
             ->select(DB::raw("count(school.school_id) as counts,school.school_name,school.school_department"))
             ->where('Institute_Registration_information.ntcu_department_department_id', 1)
-            ->groupBy('school.school_id','school.school_name','school_department')
+            ->groupBy('school.school_id', 'school.school_name', 'school_department')
             ->get();
 //        $school_data = DB::select("
 //SELECT
